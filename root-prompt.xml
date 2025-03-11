@@ -100,4 +100,34 @@
             Ask questions if anything is unclear before implementing. Do not guess or assume.
         </Requirement>
     </Requirements>
+
+    <LessonsLearned>
+        <Description>
+            This section documents the challenges and insights gained during the development of the PianoTeacher app to guide future implementations and avoid common pitfalls. These lessons are derived from practical experience and should be considered during planning and implementation phases.
+        </Description>
+        <Lesson>
+            <Title>Initialization Challenges with Tone.js</Title>
+            <Details>
+                Tone.js requires the audio context to be started with user interaction (e.g., a button click) due to browser security policies. Attempting to initialize the audio context or play notes before user interaction (e.g., in a useEffect without a trigger) can fail silently, leading to no sound output. Always ensure initialization is tied to a user action, such as mode selection, and include robust error handling to catch and log these failures.
+            </Details>
+        </Lesson>
+        <Lesson>
+            <Title>Release Management for Audio Overlap</Title>
+            <Details>
+                When using Tone.js for audio playback, overlapping notes can occur if previous notes are not explicitly released. The releaseAll() method must be called before triggering new notes to prevent sound stacking, especially in modes like "Guess the Note" where rapid note changes are common. Implement a mechanism to ensure notes are stopped before new ones play, and consider adding delays or await logic to synchronize playback.
+            </Details>
+        </Lesson>
+        <Lesson>
+            <Title>Timing Issues with Note Playback</Title>
+            <Details>
+                Timing mismatches between state updates and audio playback can lead to unexpected behavior, such as playing the wrong note or missing notes entirely. For example, a 1-second delay after a correct guess might not align with the note duration (e.g., "8n"), causing overlap or silence. Adjust delays to match audio durations or use async/await to ensure sequential execution, and add logging to verify timing.
+            </Details>
+        </Lesson>
+        <Lesson>
+            <Title>User Feedback Enhancement Opportunity</Title>
+            <Details>
+                The original specification does not require replaying the target note after an incorrect guess in "Guess the Note" mode, but user experience testing revealed that users often forget the target note without this feedback. While not implemented, consider adding an optional feature to replay the target note after an incorrect attempt to improve usability. This can be noted as a potential enhancement for future iterations.
+            </Details>
+        </Lesson>
+    </LessonsLearned>
 </RootPrompt>
