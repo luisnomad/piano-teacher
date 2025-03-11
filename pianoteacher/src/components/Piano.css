@@ -1,0 +1,21 @@
+.piano-container {
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  border: 1px solid black; /* Add border for visibility */
+}
+
+svg {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
+@media (max-width: 600px) {
+  .piano-container {
+    padding: 4px;
+  }
+}
