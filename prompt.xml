@@ -1,16 +1,16 @@
 <Prompt>
     <Task>
         <Description>
-            Create a complete React-based web application called "PianoTeacher" using plain JavaScript, designed to teach music theory through two modes: "Guess the Note" and "Chord Mode," with a 25-key virtual piano interface (C3 to C5, MIDI notes 48-72). The app uses MIDI input for interactivity, breaks down music theory into essentials, and encourages learning through visual feedback and audio playback powered by Tone.js. We have a custom SVG-based Piano component (Piano.js) with its CSS (Piano.css) that must be used for rendering the piano. You can request the code for Piano.js and Piano.css separately if needed. The current date is March 11, 2025—use modern web technologies and React best practices.
+            Create a complete React-based web application called "PianoTeacher" using plain JavaScript, designed to teach music theory through two modes: "Guess the Note" and "Chord Mode," with a 25-key virtual piano interface (C3 to C5, MIDI notes 48-72). The app uses MIDI input for interactivity, breaks down music theory into essentials, and encourages learning through visual feedback and audio playback powered by Tone.js. We have a custom SVG-based Piano component (Piano.js) with its CSS (Piano.css) that must be used for rendering the piano. You can request the code for Piano.js and Piano.css separately if needed (they are both included in the root folder). The current date is March 11, 2025—use modern web technologies and React best practices.
         </Description>
         <Output>
-            Provide a fully functional codebase with React components, CSS, and JavaScript files, including clear comments explaining the logic. Include a README with setup instructions (e.g., `npm install`, `npm start`, MIDI setup). Use the provided Piano.js component for the piano interface, requesting its code if you need to inspect it.
+            Provide a fully functional codebase with React components, CSS, and JavaScript files, including clear comments explaining the logic. Include a README with setup instructions (e.g., `npm install`, `npm start`, MIDI setup). Use the provided Piano.jsx component for the piano interface (available in root folder).
         </Output>
     </Task>
 
     <AppPurpose>
         <Goal>
-            Teach note recognition (Guess the Note mode) and chord construction/progressions (Chord Mode) using a 25-key piano (C3-C5) with MIDI input, visual feedback, and high-quality audio via Tone.js. The piano interface must use the provided Piano.js component.
+            Teach note recognition (Guess the Note mode) and chord construction/progressions (Chord Mode) using a 25-key piano (C3-C5) with MIDI input, visual feedback, and high-quality audio via Tone.js. The piano interface must use the provided Piano.jsx component.
         </Goal>
     </AppPurpose>
 
@@ -34,7 +34,7 @@
         <Feature>
             <Name>Piano Component</Name>
             <Description>
-                Use the provided Piano.js component, a dumb React component using an SVG for 25 keys (C3-C5). It renders based on props. Request Piano.js and Piano.css if you need to see their code.
+                Use the provided Piano.jsx component, a dumb React component using an SVG for 25 keys (C3-C5). It renders based on props. Piano.jsx and Piano.css are documented and shouldn't be changed unless there is a good reason to, ask first! (they are available in the root folder)
             </Description>
             <Props>
                 <Prop name="highlightedKeys">Array of MIDI notes to highlight in yellow (e.g., [notes.C4, notes.E4]).</Prop>
@@ -54,7 +54,7 @@
         <Feature>
             <Name>Notes Mapping</Name>
             <Description>
-                Use the provided PianoNotes.js, which exports notesArray (array of note objects) and notes (object mapping note names to MIDI numbers, e.g., notes.C4 = 60). Request PianoNotes.js if needed.
+                Use the provided Piano.jsx, which exports notesArray (array of note objects) and notes (object mapping note names to MIDI numbers, e.g., notes.C4 = 60). Piano.jsx is available in the root folder.
             </Description>
         </Feature>
 
