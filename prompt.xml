@@ -1,0 +1,212 @@
+<Prompt>
+    <Task>
+        <Description>
+            Create a complete React-based web application called "PianoTeacher" using plain JavaScript, designed to teach music theory through two modes: "Guess the Note" and "Chord Mode," with a 25-key virtual piano interface (C3 to C5, MIDI notes 48-72). The app uses MIDI input for interactivity, breaks down music theory into essentials, and encourages learning through visual feedback and audio playback powered by Tone.js. We have a custom SVG-based Piano component (Piano.js) with its CSS (Piano.css) that must be used for rendering the piano. You can request the code for Piano.js and Piano.css separately if needed. The current date is March 11, 2025—use modern web technologies and React best practices.
+        </Description>
+        <Output>
+            Provide a fully functional codebase with React components, CSS, and JavaScript files, including clear comments explaining the logic. Include a README with setup instructions (e.g., `npm install`, `npm start`, MIDI setup). Use the provided Piano.js component for the piano interface, requesting its code if you need to inspect it.
+        </Output>
+    </Task>
+
+    <AppPurpose>
+        <Goal>
+            Teach note recognition (Guess the Note mode) and chord construction/progressions (Chord Mode) using a 25-key piano (C3-C5) with MIDI input, visual feedback, and high-quality audio via Tone.js. The piano interface must use the provided Piano.js component.
+        </Goal>
+    </AppPurpose>
+
+    <Features>
+        <Feature>
+            <Name>Modes</Name>
+            <SubFeature>
+                <Name>Guess the Note Mode</Name>
+                <Description>
+                    Randomly selects a note from C3 (MIDI 48) to C5 (MIDI 72). Plays the note using Tone.js and highlights it in yellow on the piano. User responds via MIDI or piano click. Provides feedback: positive match color (green) if correct, negative match color (red) if wrong.
+                </Description>
+            </SubFeature>
+            <SubFeature>
+                <Name>Chord Mode</Name>
+                <Description>
+                    Shows a chord (e.g., "C major: C4-E4-G4") with highlighted keys in yellow. Optionally plays the chord via Tone.js. User plays the chord; app checks all notes. Includes progressions (e.g., I-IV-V-I): displays one chord at a time in sequence, user plays each with feedback. Examples: I-vi-ii-V, ii-V-I. Advanced toggle: add 7ths, 2nds, or augmented chords.
+                </Description>
+            </SubFeature>
+        </Feature>
+
+        <Feature>
+            <Name>Piano Component</Name>
+            <Description>
+                Use the provided Piano.js component, a dumb React component using an SVG for 25 keys (C3-C5). It renders based on props. Request Piano.js and Piano.css if you need to see their code.
+            </Description>
+            <Props>
+                <Prop name="highlightedKeys">Array of MIDI notes to highlight in yellow (e.g., [notes.C4, notes.E4]).</Prop>
+                <Prop name="pressedKeys">Array of MIDI notes currently pressed.</Prop>
+                <Prop name="showLabels">Boolean to toggle note names (e.g., “C3”, “C#3”).</Prop>
+                <Prop name="onClick">Callback for key press (e.g., onClick(midi)).</Prop>
+                <Prop name="onKeyPress">Callback to determine if a press is correct (returns true/false).</Prop>
+                <Prop name="positiveMatchColor">Color for correct presses (default: '#4caf50').</Prop>
+                <Prop name="negativeMatchColor">Color for incorrect presses (default: '#f44336').</Prop>
+            </Props>
+            <Visuals>
+                <Highlight>Yellow for highlighted keys (lesson targets).</Highlight>
+                <Pressed>Green (or positiveMatchColor) for correct presses, red (or negativeMatchColor) for incorrect.</Pressed>
+            </Visuals>
+        </Feature>
+
+        <Feature>
+            <Name>Notes Mapping</Name>
+            <Description>
+                Use the provided PianoNotes.js, which exports notesArray (array of note objects) and notes (object mapping note names to MIDI numbers, e.g., notes.C4 = 60). Request PianoNotes.js if needed.
+            </Description>
+        </Feature>
+
+        <Feature>
+            <Name>MIDI Integration</Name>
+            <Description>
+                Use Web MIDI API to detect note-on events (command 144). Pass pressed note data to parent components for logic and Tone.js playback.
+            </Description>
+        </Feature>
+
+        <Feature>
+            <Name>Audio Playback</Name>
+            <Description>
+                Use Tone.js to play notes and chords in Guess the Note mode (e.g., play D#4 for user to identify) and optionally in Chord Mode (e.g., demo the target chord).
+            </Description>
+        </Feature>
+
+        <Feature>
+            <Name>Visual Aids & Feedback</Name>
+            <Description>
+                Highlight keys for exercises. Show text feedback (e.g., “Great!” or “Wrong, try C-E-G”). Include a toggle button for note labels.
+            </Description>
+        </Feature>
+
+        <Feature>
+            <Name>Key Transposition</Name>
+            <Description>
+                Dropdown to switch root key (e.g., C major to D major), updating exercises and Tone.js playback.
+            </Description>
+        </Feature>
+
+        <Feature>
+            <Name>Progress Tracking</Name>
+            <Description>
+                Tracks accuracy per mode; displays after exercises (e.g., “90% correct”).
+            </Description>
+        </Feature>
+    </Features>
+
+    <Setup>
+        <Description>
+            Before writing any code for the "PianoTeacher" app, follow these steps in order to set up the project scaffold using Vite as the build tool (not Create React App). This ensures the environment is ready with all necessary config files and dependencies, and sets up a structure that aligns with the app’s goals. The app teaches music theory through a 25-key virtual piano with MIDI input and Tone.js audio, and must be 100% functional on delivery. Models must complete this setup first to avoid errors and ensure success.
+        </Description>
+        <Steps>
+            <Step>
+                <Name>Check Vite Availability</Name>
+                <Instructions>
+                    Start by checking if Vite is available. In a terminal, run `npm list vite` to see if it’s installed globally. If it shows a version (e.g., "vite@5.x.x"), Vite is ready—move to the next step. If it returns nothing or an error, it’s not installed globally, so use `npm init vite@latest` to set up the project, which will include Vite locally. Do NOT use `npx create-react-app`—we’re using Vite for its speed and simplicity. If unsure about the terminal output, ask me: “Please run `npm list vite` and tell me what it says.”
+                </Instructions>
+            </Step>
+            <Step>
+                <Name>Scaffold the App with Vite</Name>
+                <Instructions>
+                    Create the app scaffold *before* writing any code. In a terminal, run: `npm init vite@latest pianoteacher -- --template react`. This command does: `npm init vite@latest` starts Vite’s setup, `pianoteacher` names the folder, and `-- --template react` picks the React template with plain JavaScript (no TypeScript). If prompted, choose "React" and "JavaScript". This makes a `pianoteacher` folder with:
+                    - `package.json`: Lists dependencies and scripts.
+                    - `vite.config.js`: Configures Vite.
+                    - `index.html`: Entry point.
+                    - `src/`: Has `main.jsx`, `App.jsx`, and basic CSS.
+                    After running, enter the folder with `cd pianoteacher`. If this step fails or you’re unsure, ask me: “Did `npm init vite@latest pianoteacher -- --template react` work? What files do you see?”
+                </Instructions>
+            </Step>
+            <Step>
+                <Name>Install Dependencies and Check Compatibility</Name>
+                <Instructions>
+                    Inside `pianoteacher`, install dependencies: React (comes with Vite) and Tone.js for audio. Run: `npm install tone`. This adds Tone.js (e.g., `"tone": "^14.x.x"`) to `package.json`. The Web MIDI API is native to browsers (no package needed). To ensure no version conflicts:
+                    - Check `package.json` after install. It should have `"react"`, `"react-dom"`, and `"tone"`.
+                    - Run `npm list --depth=0` to see top-level dependencies. Example output: `react@18.x.x`, `react-dom@18.x.x`, `tone@14.x.x`, `vite@x.x.x`. If versions mismatch (e.g., React 17 vs. 18), or if there’s an error, ask me: “I see [list versions]. Is this okay, or should I fix a conflict?”
+                    - Test compatibility: After the next step, run `npm run dev`. If it fails due to dependency issues, note the error and ask me: “Running `npm run dev` gave [error]. How do I resolve this?”
+                    No extra libraries beyond React and Tone.js—keep it minimal and conflict-free.
+                </Instructions>
+            </Step>
+            <Step>
+                <Name>Update Config Files</Name>
+                <Instructions>
+                    Adjust the scaffolded files:
+                    - `package.json`: Ensure scripts are: `"dev": "vite"`, `"build": "vite build"`, `"preview": "vite preview"`. These run the app with `npm run dev`.
+                    - `vite.config.js`: Verify it’s:
+                      ```javascript
+                      import { defineConfig } from 'vite'
+                      import react from '@vitejs/plugin-react'
+                      export default defineConfig({
+                        plugins: [react()]
+                      })
+                      ```
+                      This enables React support. Don’t change unless it’s missing `react()`.
+                    - `index.html`: Confirm `<script type="module" src="/src/main.jsx"></script>` exists in the `<body>`.
+                    - `src/main.jsx`: Replace with:
+                      ```javascript
+                      import React from 'react'
+                      import ReactDOM from 'react-dom/client'
+                      import App from './App'
+                      ReactDOM.createRoot(document.getElementById('root')).render(<App />)
+                      ```
+                      Rename `App.jsx` to `App.js` later if needed—keep it `.jsx` for now.
+                    If a file looks wrong, ask me: “Here’s [file content]. Does this look right?”
+                </Instructions>
+            </Step>
+            <Step>
+                <Name>Verify Setup</Name>
+                <Instructions>
+                    Test the scaffold. Run `npm run dev` in `pianoteacher`. Vite starts a server (e.g., `http://localhost:5173`). Open it in a browser (Chrome recommended). You’ll see Vite’s default React page. If it loads, setup is good. If it fails, check the terminal error and ask me: “`npm run dev` failed with [error]. What do I do?” Stop the server with Ctrl+C after testing. Only proceed to coding after this works.
+                </Instructions>
+            </Step>
+        </Steps>
+        <Requirements>
+            <Requirement>Use Vite as the build tool—no Create React App. It’s faster and required.</Requirement>
+            <Requirement>Complete the scaffold and install dependencies *before* writing any app code (e.g., components, utils).</Requirement>
+            <Requirement>Ensure dependencies (React, Tone.js) have compatible versions with no conflicts. This is critical—double-check with `npm list` and test with `npm run dev`. Ask me if unsure.</Requirement>
+            <Requirement>Use React for the app, but write non-React, non-presentational logic (e.g., MIDI handling, audio playback, theory calculations) as separate, reusable JavaScript methods in `src/utils/`. These should work standalone and not depend on React.</Requirement>
+            <Requirement>No TypeScript, but use JSDoc comments (e.g., `/** @param {number[]} notes */`), PropTypes (e.g., `PropTypes.arrayOf(PropTypes.number)`), or Zod schemas (e.g., `z.array(z.number())`) for clarity and validation where helpful. Pick one or mix based on context.</Requirement>
+            <Requirement>Keep logic as simple as possible (e.g., basic if-statements, loops) while ensuring every component (like the piano) can be extended or replaced easily. Use props and separate utils to make swapping parts straightforward.</Requirement>
+            <Requirement>Make the app responsive (e.g., piano scales with screen size) if time allows—nice-to-have, not mandatory.</Requirement>
+            <Requirement>Ask me questions if anything is unclear, vague, or if there’s a better way (e.g., “Should I use X instead of Y here?”). I’m here to clarify.</Requirement>
+            <Requirement>Deliver a 100% functional app matching the mission: teach notes and chords via a 25-key piano with MIDI and audio. Test everything—don’t guess. If unsure, ask me to run commands or test (e.g., “Can you run `npm run dev` and check X?”).</Requirement>
+        </Requirements>
+    </Setup>
+
+    <ImplementationGuidance>
+        <Piano>
+            <Description>
+                Use the provided Piano.js component located in `src/components/Piano.js`. It renders a 25-key piano using SVG based on props. It relies on PianoNotes.js for note data and Piano.css for styling. Request these files if you need to inspect them. The piano renders keys from C3 (MIDI 48) to C5 (MIDI 72), with 15 white keys and 10 black keys. White keys are 40px wide and 150px tall; black keys are 24px wide and 100px tall. Use the piano’s props to highlight keys, show pressed keys, and toggle labels.
+            </Description>
+        </Piano>
+        <MIDI>
+            <Description>
+                In `midi.js`, write a function to set up the Web MIDI API. First, check if `navigator.requestMIDIAccess` exists—if not, log “MIDI not supported” and return. Call `navigator.requestMIDIAccess()` and use `.then()` to handle success. On success, get all MIDI inputs with `midiAccess.inputs.values()`. Loop through them using a `for` loop (e.g., `let input = inputs.next(); input && !input.done; input = inputs.next()`). For each input, set `input.value.onmidimessage = handleMIDIMessage`. In `handleMIDIMessage(message)`, get the MIDI data array: `const [command, note, velocity] = message.data`. If `command === 144` (note on) and `velocity > 0`, that’s a key press—store the `note` (e.g., 60 for C4) in an array of pressed notes. If `command === 128` or `velocity === 0` (note off), remove that note from the array. Export a function that takes a callback (e.g., `setPressedKeys`) and calls it with the updated pressed notes array whenever a MIDI message happens. In `App.js`, call this function and pass the pressed notes to the `Piano` component.
+            </Description>
+        </MIDI>
+        <Audio>
+            <Description>
+                In `audio.js`, import Tone.js with `import * as Tone from 'tone'`. Create a synth with `const synth = new Tone.Synth().toDestination()`. Write a `playNote` function that takes a MIDI note number (e.g., 60). Convert it to a note name using `notesArray` from `PianoNotes.js`—find the note object with `notesArray.find(n => n.midi === note)`, then use its `note` property (e.g., “C4”). Call `synth.triggerAttackRelease(noteName, "8n")` to play it for an eighth note. Write a `playChord` function that takes an array of MIDI notes (e.g., [60, 64, 67]), converts each to a note name, and plays them together with `synth.triggerAttackRelease(chordNotes, "8n")`. Export both functions. In `GuessTheNote.js`, call `playNote` when showing a new note. In `ChordMode.js`, call `playChord` if the user toggles playback.
+            </Description>
+        </Audio>
+        <Theory>
+            <Description>
+                In `theory.js`, make an object for music theory data. Create a chord library: `const chords = { "C major": [notes.C4, notes.E4, notes.G4], "G major": [notes.G4, notes.B4, notes.D5], "A minor": [notes.A4, notes.C5, notes.E5], ... }`—add at least 5-10 chords (major, minor, 7ths). For progressions, make an array like `const progressions = { "I-IV-V-I": [[notes.C4, notes.E4, notes.G4], [notes.F4, notes.A4, notes.C5], [notes.G4, notes.B4, notes.D5], [notes.C4, notes.E4, notes.G4]], "I-vi-ii-V": [[notes.C4, notes.E4, notes.G4], [notes.A4, notes.C5, notes.E5], [notes.D4, notes.F4, notes.A4], [notes.G4, notes.B4, notes.D5]] }` in C major—add 2-3 examples. Write a `getRandomNote` function: pick a random index with `Math.floor(Math.random() * notesArray.length)` and return `notesArray[index].midi`. Write a `getChord` function that takes a chord name and returns its MIDI array from `chords`. Export these as an object: `export default { chords, progressions, getRandomNote, getChord }`.
+            </Description>
+        </Theory>
+        <Modes>
+            <Description>
+                In `GuessTheNote.js`, use React hooks. Set a state with `useState`: `const [targetNote, setTargetNote] = useState(null)`. In `useEffect`, call `theory.getRandomNote()` once (empty dependency array `[]`) and set it to `targetNote`. Call `playNote(targetNote)` from `audio.js`. Pass `targetNote` as `[targetNote]` to `Piano`’s `highlightedKeys`. When a key is pressed (via `onClick`), update `pressedKeys` and use `onKeyPress` to check if the pressed note matches `targetNote`—if yes, show “Correct!” and pick a new note; if no, show “Try again”. In `ChordMode.js`, set states: `const [currentChord, setCurrentChord] = useState(chords["C major"])` and `const [progression, setProgression] = useState(null)`. Show `currentChord` as `highlightedKeys`. If progression is off, check if `pressedKeys` matches `currentChord` (same length, all notes included)—if yes, pick a new random chord. If progression is on, use `progressions["I-IV-V-I"]`, show the first chord, check `pressedKeys`, then move to the next chord in sequence until done. Add a button to toggle progression mode.
+            </Description>
+        </Modes>
+        <Feedback>
+            <Description>
+                In `GuessTheNote.js` and `ChordMode.js`, add a state: `const [feedback, setFeedback] = useState("")`. In Guess mode, when a key is pressed, if `onKeyPress` returns true, set `setFeedback("Correct!")`; else, set `setFeedback("Try again")`. In Chord mode, check if `pressedKeys` matches `currentChord` (e.g., `pressedKeys.length === currentChord.length && currentChord.every(note => pressedKeys.includes(note))`)—if yes, set `setFeedback("Great!")`; else, set `setFeedback("Wrong, try again")`. Show `feedback` in a `<div>` below the piano.
+            </Description>
+        </Feedback>
+    </ImplementationGuidance>
+
+    <Output>
+        <Directory path="src/">All component and utility files.</Directory>
+        <File path="README.md">Setup instructions (e.g., `npm install tone`, run app, connect MIDI).</File>
+    </Output>
+</Prompt>
