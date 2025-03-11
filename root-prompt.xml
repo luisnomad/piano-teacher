@@ -1,0 +1,103 @@
+<RootPrompt>
+    <Overview>
+        <Description>
+            You are tasked with building a React-based web application called "PianoTeacher" using plain JavaScript, designed to teach music theory through two modes: "Guess the Note" and "Chord Mode," with a 25-key virtual piano interface (C3 to C5, MIDI notes 48-72). All necessary resources, prompts, and example files are already available in the project directory, located in the root folder. Your process must follow a structured approach: understand the app requirements by reviewing the provided prompts and files, create a detailed plan, ask questions if needed, and only proceed with implementation once all questions are resolved. This ensures a clear understanding before coding begins.
+        </Description>
+        <Resources>
+            <Description>
+                The project directory contains the following resources in the root folder:
+                - mainprompt.xml: The main mega-prompt with app requirements, setup instructions, and implementation guidance.
+                - gamerules.xml: Detailed gameplay rules for "Guess the Note" and "Chord Mode," including stages and progression logic.
+                - MusicData.xml: Music data with specific chords and progressions, including MIDI numbers and note names.
+                - MusicData.json: A JSON version of MusicData.xml for direct use in JavaScript.
+                - Piano.jsx: A React component for rendering the 25-key piano, including notes and notesArray exports.
+                - Piano.css: CSS styling for the Piano component.
+                You can request any of these files if you need to inspect them. They are already available in the root folder.
+            </Description>
+        </Resources>
+    </Overview>
+
+    <Process>
+        <Step>
+            <Name>Understand the App Requirements</Name>
+            <Instructions>
+                Review the provided prompts and files in the root folder to understand the PianoTeacher app:
+                - Start with mainprompt.xml to grasp the overall requirements, setup process (using Vite), features (e.g., MIDI, Tone.js audio), and implementation guidance.
+                - Read gamerules.xml to understand the gameplay mechanics, including "Guess the Note" mode (indefinite note guessing) and "Chord Mode" (6 stages with progression after 5 correct attempts).
+                - Examine MusicData.xml and MusicData.json to see the specific chords (e.g., C Major: C4-E4-G4, MIDI 60-64-67) and progressions (e.g., I-IV-V-I) available for exercises.
+                - Inspect Piano.jsx to understand the Piano component’s props (e.g., onClick(midiNote), highlightedKeys) and exports (notes, notesArray).
+                - Review Piano.css to see the styling for the piano.
+                - Study gameEngine.js as an example of how the game logic can be structured, including stage exercises and evaluation.
+                Take notes on key requirements, such as using Vite, handling MIDI errors, integrating Tone.js, and ensuring the Piano component does not handle correctness logic (handled by GuessTheNote.js and ChordMode.js).
+            </Instructions>
+        </Step>
+        <Step>
+            <Name>Create a Detailed Plan</Name>
+            <Instructions>
+                Based on your understanding, create a detailed plan for implementing the PianoTeacher app. The plan should include:
+                - Project setup steps (e.g., scaffold with Vite, install dependencies like Tone.js).
+                - File structure (e.g., src/components/, src/utils/, src/App.js).
+                - Component breakdown (e.g., App.js for mode selection, GuessTheNote.js, ChordMode.js).
+                - Game logic implementation (e.g., how to handle "Guess the Note" mode, stage progression in "Chord Mode").
+                - MIDI and audio integration (e.g., using Web MIDI API, Tone.js playback).
+                - UI elements (e.g., mode selection, visual indicator for stage/attempts, exit button).
+                - How to use the provided Piano.jsx component and MusicData.json for exercises.
+                - Error handling (e.g., MIDI support, user denial).
+                - File management: After setting up Vite (which creates an src/ folder), copy Piano.jsx and Piano.css from the root folder to src/components/, keeping the original files in the root intact. Use the copied files in src/components/ for the app implementation.
+                Write this plan as a comment or separate document in your response before proceeding to implementation. Ensure the plan aligns with the requirements in mainprompt.xml, gamerules.xml, and MusicData.xml/json.
+            </Instructions>
+        </Step>
+        <Step>
+            <Name>Ask Questions for Clarity</Name>
+            <Instructions>
+                If anything is unclear after reviewing the prompts and files, ask specific questions to resolve ambiguities. Examples of questions you might ask:
+                - "In mainprompt.xml, the setup requires Vite. Should I use a specific version?"
+                - "gamerules.xml mentions SUCCESSFUL_ATTEMPTS_REQUIRED = 5. Can I make this configurable in the UI?"
+                - "MusicData.xml includes chords like C Major. Should I generate additional chords dynamically?"
+                - "Piano.jsx uses onClick(midiNote). How should I handle multiple simultaneous key presses?"
+                Do not proceed to implementation until all questions are answered and you have a clear understanding of the requirements. If you have no questions, state: "I have no questions and am ready to implement the app."
+            </Instructions>
+        </Step>
+        <Step>
+            <Name>Implement the App</Name>
+            <Instructions>
+                Once all questions are resolved and you have a clear plan, implement the PianoTeacher app. Follow these guidelines:
+                - Set up the project using Vite as specified in mainprompt.xml’s Setup section.
+                - After Vite setup, copy Piano.jsx and Piano.css from the root folder to src/components/, keeping the original files in the root intact. Use the copied files for implementation.
+                - Create the necessary files (e.g., App.js, GuessTheNote.js, ChordMode.js, src/utils/midi.js, src/utils/audio.js, src/utils/theory.js).
+                - Use the provided Piano.jsx component (from src/components/) for the piano interface, calling onClick(midiNote) to handle key presses.
+                - Implement game logic as per gamerules.xml, using MusicData.json (or MusicData.xml if preferred) for chords and progressions.
+                - Follow the example in gameEngine.js to structure the game logic, adapting it as needed.
+                - Ensure MIDI error handling (unsupported browsers, user denial) with a fallback to clicking the virtual piano.
+                - Add UI elements for mode selection, stage/attempt indicators, and an exit button as specified.
+                - Test the app thoroughly:
+                    - Verify "Guess the Note" mode runs indefinitely with random notes.
+                    - Check "Chord Mode" progresses after 5 correct attempts per stage, with a visual indicator.
+                    - Confirm MIDI works (if available) and falls back to clicks.
+                    - Ensure chords and progressions from MusicData.json are used correctly (e.g., C Major highlights MIDI 60-64-67).
+                Deliver a fully functional codebase with comments explaining the logic. Include a README.md with setup instructions (e.g., `npm install`, `npm run dev`, MIDI setup).
+            </Instructions>
+        </Step>
+    </Process>
+
+    <Requirements>
+        <Requirement>
+            Follow the structured process exactly: understand, plan, ask questions, then implement. Do not skip steps.
+        </Requirement>
+        <Requirement>
+            Copy Piano.jsx and Piano.css from the root folder to src/components/ after Vite setup, keeping the original files in the root intact.
+        </Requirement>
+        <Requirement>
+            Use the provided Piano.jsx component (from src/components/) for the piano interface, relying on onClick(midiNote) for key presses.
+        </Requirement>
+        <Requirement>
+            Align the game logic with gamerules.xml, using MusicData.json (or MusicData.xml) for chords and progressions.
+        </Requirement>
+        <Requirement>
+            Ensure the app is 100% functional, with proper error handling and UI feedback as specified.
+        </Requirement>
+        <Requirement>
+            Ask questions if anything is unclear before implementing. Do not guess or assume.
+        </Requirement>
+    </Requirements>
+</RootPrompt>
