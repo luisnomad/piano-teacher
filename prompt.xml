@@ -8,7 +8,7 @@
             The app follows detailed game rules defined in a separate gamerules.xml file (available root folder), which specifies the gameplay mechanics, stages, and evaluation criteria for 'Guess the Note' and 'Chord Mode'.
             The app uses detailed music data defined in a separate MusicData.xml file, which provides specific chords and progressions for exercises, alongside the gameplay rules in gamerules.xml (both xml files are in the root folder).
             Align the codebase with the gameplay rules in gamerules.xml and the music data in MusicData.xml. 
-            Note: MusicData.xml is also avilable in json format (musicdata.json) in the root folder, in case you want to use it as a data source.
+            Note: MusicData.xml is also avilable in json format (musicdata.json) in the root folder, in case you want to use it as a data source, but it's optional. I leave it to you, if you find a better way.
         </Description>
         <Output>
             Provide a fully functional codebase with React components, CSS, and JavaScript files, including clear comments explaining the logic. Include a README with setup instructions (e.g., `npm install`, `npm start`, MIDI setup). Use the provided Piano.jsx component for the piano interface (available in root folder).
