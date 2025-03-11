@@ -165,3 +165,56 @@ const Piano = ({
 };
 
 export { Piano, notes, notesArray };
+
+// Example of use:
+/*
+
+const App = () => {
+  const [showLabels, setShowLabels] = React.useState(false);
+  const [pressedKeys, setPressedKeys] = React.useState([]);
+  const [targetNote, setTargetNote] = React.useState(notes.C4); // Start with C4
+  const [lastPressCorrect, setLastPressCorrect] = React.useState(null); // Track correctness
+
+  const handleKeyPress = (midi) => {
+    // Check if the press is correct *before* changing targetNote
+    const isCorrect = midi === targetNote;
+    setLastPressCorrect(isCorrect); // Store correctness for color
+    setPressedKeys([midi]); // Show the pressed key
+
+    // After 500ms, clear the press and pick a new note if correct
+    setTimeout(() => {
+      setPressedKeys([]);
+      setLastPressCorrect(null);
+      if (isCorrect) {
+        const randomNote = notesArray[Math.floor(Math.random() * notesArray.length)].midi;
+        setTargetNote(randomNote);
+      }
+    }, 500);
+  };
+
+  const checkKeyPress = (midi) => {
+    // Use stored correctness to avoid timing issues
+    if (lastPressCorrect === null) return false; // No press yet
+    return lastPressCorrect;
+  };
+
+  return (
+    <div>
+      <button onClick={() => setShowLabels(!showLabels)}>
+        {showLabels ? 'Hide Labels' : 'Show Labels'}
+      </button>
+      <Piano
+        highlightedKeys={[targetNote]} // Highlight the target note
+        pressedKeys={pressedKeys}
+        showLabels={showLabels}
+        onClick={handleKeyPress}
+        onKeyPress={checkKeyPress}
+        positiveMatchColor="#00CC00" // Bright green
+        negativeMatchColor="#ff0000" // Bright red
+      />
+      <p>Guess the note (highlighted in yellow)! Click a key to try.</p>
+    </div>
+  );
+};
+
+*/
