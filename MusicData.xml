@@ -1,0 +1,110 @@
+<MusicData>
+  <Chords>
+    <Chord name="C Major" root="C4">
+      <Note midi="60">C4</Note>
+      <Note midi="64">E4</Note>
+      <Note midi="67">G4</Note>
+    </Chord>
+    <Chord name="G Major" root="G4">
+      <Note midi="67">G4</Note>
+      <Note midi="71">B4</Note>
+      <Note midi="74">D5</Note>
+    </Chord>
+    <Chord name="F Major" root="F4">
+      <Note midi="65">F4</Note>
+      <Note midi="69">A4</Note>
+      <Note midi="72">C5</Note>
+    </Chord>
+    <Chord name="A Minor" root="A4">
+      <Note midi="69">A4</Note>
+      <Note midi="72">C5</Note>
+      <Note midi="76">E5</Note>
+    </Chord>
+    <Chord name="D Minor" root="D4">
+      <Note midi="62">D4</Note>
+      <Note midi="65">F4</Note>
+      <Note midi="69">A4</Note>
+    </Chord>
+    <Chord name="E Minor" root="E4">
+      <Note midi="64">E4</Note>
+      <Note midi="67">G4</Note>
+      <Note midi="71">B4</Note>
+    </Chord>
+    <Chord name="C Major 7th" root="C4">
+      <Note midi="60">C4</Note>
+      <Note midi="64">E4</Note>
+      <Note midi="67">G4</Note>
+      <Note midi="71">B4</Note>
+    </Chord>
+    <Chord name="G Major 7th" root="G4">
+      <Note midi="67">G4</Note>
+      <Note midi="71">B4</Note>
+      <Note midi="74">D5</Note>
+      <Note midi="78">F#5</Note>
+    </Chord>
+    <Chord name="F Major 7th" root="F4">
+      <Note midi="65">F4</Note>
+      <Note midi="69">A4</Note>
+      <Note midi="72">C5</Note>
+      <Note midi="76">E5</Note>
+    </Chord>
+    <Chord name="C Minor 7th" root="C4">
+      <Note midi="60">C4</Note>
+      <Note midi="63">Eb4</Note>
+      <Note midi="67">G4</Note>
+      <Note midi="70">Bb4</Note>
+    </Chord>
+    <Chord name="G Dominant 7th" root="G4">
+      <Note midi="67">G4</Note>
+      <Note midi="71">B4</Note>
+      <Note midi="74">D5</Note>
+      <Note midi="70">F5</Note>
+    </Chord>
+    <Chord name="C Augmented" root="C4">
+      <Note midi="60">C4</Note>
+      <Note midi="64">E4</Note>
+      <Note midi="68">G#4</Note>
+    </Chord>
+  </Chords>
+
+  <Progressions>
+    <Progression name="I-IV-V-I (C Major)" key="C Major">
+      <ChordRef>C Major</ChordRef>
+      <ChordRef>F Major</ChordRef>
+      <ChordRef>G Major</ChordRef>
+      <ChordRef>C Major</ChordRef>
+    </Progression>
+    <Progression name="I-vi-ii-V (C Major)" key="C Major">
+      <ChordRef>C Major</ChordRef>
+      <ChordRef>A Minor</ChordRef>
+      <ChordRef>D Minor</ChordRef>
+      <ChordRef>G Major</ChordRef>
+    </Progression>
+    <Progression name="I-vi-IV-V (C Major)" key="C Major">
+      <ChordRef>C Major</ChordRef>
+      <ChordRef>A Minor</ChordRef>
+      <ChordRef>F Major</ChordRef>
+      <ChordRef>G Major</ChordRef>
+    </Progression>
+    <Progression name="ii-V-I (C Major)" key="C Major">
+      <ChordRef>D Minor</ChordRef>
+      <ChordRef>G Major</ChordRef>
+      <ChordRef>C Major</ChordRef>
+    </Progression>
+    <Progression name="I-IV-V-I (G Major)" key="G Major">
+      <ChordRef>G Major</ChordRef>
+      <ChordRef>C Major</ChordRef>
+      <ChordRef>D Major</ChordRef>
+      <ChordRef>G Major</ChordRef>
+    </Progression>
+    <Progression name="Twinkle Twinkle (C Major)" key="C Major">
+      <ChordRef>C Major</ChordRef>
+      <ChordRef>G Major</ChordRef>
+      <ChordRef>C Major</ChordRef>
+      <ChordRef>G Major</ChordRef>
+      <ChordRef>C Major</ChordRef>
+      <ChordRef>G Major</ChordRef>
+      <ChordRef>C Major</ChordRef>
+    </Progression>
+  </Progressions>
+</MusicData>
