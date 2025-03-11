@@ -1,0 +1,195 @@
+<GameRules>
+    <Overview>
+        <Description>
+            The "PianoTeacher" app teaches music theory through two modes: "Guess the Note" and "Chord Mode." "Guess the Note" is a standalone mode where users identify random notes indefinitely. "Chord Mode" consists of 6 progressive stages, each focusing on a specific music theory concept (chords, inversions, progressions). Users must complete 5 correct attempts (configurable via SUCCESSFUL_ATTEMPTS_REQUIRED = 5) to advance to the next stage in Chord Mode. A visual indicator shows the current stage and remaining attempts (e.g., "Stage 1: Building Basic Chords - 3/5 correct to advance"). The app uses a provided Piano.js component for the 25-key piano (C3-C5, MIDI 48-72), with notes and notesArray available for note lookups. An example gameEngine.js is provided as a reference for structuring the game logic.
+        </Description>
+        <Constants>
+            <Constant name="SUCCESSFUL_ATTEMPTS_REQUIRED" value="5">
+                Number of correct attempts required to advance to the next stage in Chord Mode. Configurable.
+            </Constant>
+        </Constants>
+    </Overview>
+
+    <Mode name="GuessTheNote">
+        <Description>
+            A practice mode where users identify random notes from C3 to C5 (MIDI 48-72). The app plays a note using Tone.js, highlights it in yellow on the piano, and the user must play it back via MIDI or clicking. Correct guesses turn the key green (positiveMatchColor), incorrect ones turn it red (negativeMatchColor). Feedback (e.g., "Correct!" or "Try again") appears below the piano. This mode runs indefinitely until the user exits.
+        </Description>
+        <ExerciseType>note</ExerciseType>
+        <Evaluation>
+            <Type>single-note</Type>
+            <Description>
+                Compare the pressed key to the target note. If the pressed MIDI note matches the target, return true (correct); otherwise, return false (incorrect).
+            </Description>
+        </Evaluation>
+        <Feedback>
+            <Correct>Correct!</Correct>
+            <Incorrect>Try again</Incorrect>
+        </Feedback>
+        <Progress>
+            <Description>
+                There are no stages in this mode. The game continues indefinitely, presenting random notes until the user exits the mode.
+            </Description>
+        </Progress>
+    </Mode>
+
+    <Mode name="ChordMode">
+        <Description>
+            A progressive mode with 6 stages, each teaching a music theory concept. Users must complete 5 correct attempts (SUCCESSFUL_ATTEMPTS_REQUIRED) to advance to the next stage. A visual indicator shows the current stage and remaining attempts (e.g., "Stage 1: Building Basic Chords - 3/5 correct to advance"). Correct attempts increment a counter; incorrect attempts do not. After 5 correct attempts, the stage advances, resetting the counter. If at Stage 6, loop back to Stage 1 or show a completion message (configurable). Feedback appears below the piano for each attempt.
+        </Description>
+        <VisualIndicator>
+            <Description>
+                Display the current stage number, stage name, and remaining attempts (e.g., "Stage 1: Building Basic Chords - 3/5 correct to advance"). Update after each attempt.
+            </Description>
+        </VisualIndicator>
+        <Stage number="1">
+            <Name>Building Basic Chords</Name>
+            <IntendedTeaching>
+                Learn to construct major (1-3-5) and minor (1-b3-5) triads.
+                Understand the 1-3-5 formula for major chords and 1-b3-5 for minor.
+                Build major/minor chords in any key (focus on C, G, F major scales).
+            </IntendedTeaching>
+            <SuccessfulCriteria>
+                <Criterion>Build any major or minor triad on the keyboard.</Criterion>
+                <Criterion>Explain the construction of major (1-3-5) and minor (1-b3-5) chords.</Criterion>
+                <Criterion>Play major/minor chords of C, G, F major scales.</Criterion>
+            </SuccessfulCriteria>
+            <ExerciseType>chord</ExerciseType>
+            <Evaluation>
+                <Type>chord-match</Type>
+                <Description>
+                    Check if pressed keys match the target chord (same length, all notes included).
+                </Description>
+            </Evaluation>
+            <Feedback>
+                <Correct>Great chord!</Correct>
+                <Incorrect>Wrong, play [chordName]</Incorrect>
+            </Feedback>
+        </Stage>
+
+        <Stage number="2">
+            <Name>Chord Inversions</Name>
+            <IntendedTeaching>
+                Learn chord inversions (root, first, second).
+                Understand how inversions affect sound.
+                Play inversions smoothly.
+            </IntendedTeaching>
+            <SuccessfulCriteria>
+                <Criterion>Identify and play chord inversions.</Criterion>
+                <Criterion>Explain the concept of inversions (e.g., root: 1-3-5, first: 3-5-1).</Criterion>
+                <Criterion>Play a major/minor chord in any inversion when asked.</Criterion>
+            </SuccessfulCriteria>
+            <ExerciseType>chord-inversion</ExerciseType>
+            <Evaluation>
+                <Type>chord-match</Type>
+                <Description>
+                    Check if pressed keys match the target chord (ignoring inversion for simplicity).
+                </Description>
+            </Evaluation>
+            <Feedback>
+                <Correct>Great chord!</Correct>
+                <Incorrect>Wrong, play [chordName]</Incorrect>
+            </Feedback>
+        </Stage>
+
+        <Stage number="3">
+            <Name>Chord Progressions - The Basics</Name>
+            <IntendedTeaching>
+                Introduce Roman numeral system (I-ii-iii-IV-V-vi-vii°).
+                Learn basic progressions in major keys (I-IV-V, I-vi-IV-V).
+                Practice playing common progressions.
+            </IntendedTeaching>
+            <SuccessfulCriteria>
+                <Criterion>Identify chords in a progression using Roman numerals.</Criterion>
+                <Criterion>Play basic progressions in different keys.</Criterion>
+                <Criterion>Explain major/minor chord patterns in a major scale.</Criterion>
+            </SuccessfulCriteria>
+            <ExerciseType>progression</ExerciseType>
+            <Evaluation>
+                <Type>progression-step</Type>
+                <Description>
+                    Check if pressed keys match the current chord in the progression. Advance to the next chord if correct.
+                </Description>
+            </Evaluation>
+            <Feedback>
+                <Correct>Great chord! or Progression complete!</Correct>
+                <Incorrect>Wrong, play [chordName]</Incorrect>
+            </Feedback>
+        </Stage>
+
+        <Stage number="4">
+            <Name>Chord Progressions - Expanding Horizons</Name>
+            <IntendedTeaching>
+                Introduce common progressions (I-vi-ii-V, ii-V-I).
+                Learn to transpose progressions to different keys.
+                Recognize progressions in songs.
+            </IntendedTeaching>
+            <SuccessfulCriteria>
+                <Criterion>Play common progressions.</Criterion>
+                <Criterion>Transpose a progression to any key.</Criterion>
+                <Criterion>Identify the progression of a simple song.</Criterion>
+            </SuccessfulCriteria>
+            <ExerciseType>progression</ExerciseType>
+            <Evaluation>
+                <Type>progression-step</Type>
+                <Description>
+                    Check if pressed keys match the current chord in the transposed progression. Advance to the next chord if correct.
+                </Description>
+            </Evaluation>
+            <Feedback>
+                <Correct>Great chord! or Progression complete!</Correct>
+                <Incorrect>Wrong, play [chordName]</Incorrect>
+            </Feedback>
+        </Stage>
+
+        <Stage number="5">
+            <Name>Seventh Chords and Beyond</Name>
+            <IntendedTeaching>
+                Learn to build seventh chords (major 7th, minor 7th, dominant 7th).
+                Understand how seventh chords add color.
+                Experiment with augmented chords.
+            </IntendedTeaching>
+            <SuccessfulCriteria>
+                <Criterion>Build and play seventh chords.</Criterion>
+                <Criterion>Identify seventh chords by ear.</Criterion>
+                <Criterion>Incorporate seventh chords into progressions.</Criterion>
+                <Criterion>Add out-of-scale chords and explain their use.</Criterion>
+            </SuccessfulCriteria>
+            <ExerciseType>chord</ExerciseType>
+            <Evaluation>
+                <Type>chord-match</Type>
+                <Description>
+                    Check if pressed keys match the target seventh or augmented chord.
+                </Description>
+            </Evaluation>
+            <Feedback>
+                <Correct>Great chord!</Correct>
+                <Incorrect>Wrong, play [chordName]</Incorrect>
+            </Feedback>
+        </Stage>
+
+        <Stage number="6">
+            <Name>Ear Training and Application</Name>
+            <IntendedTeaching>
+                Refine ability to identify chords and progressions by ear.
+                Apply knowledge to analyze and create music.
+                Use progressions to write songs.
+            </IntendedTeaching>
+            <SuccessfulCriteria>
+                <Criterion>Accurately identify progressions in complex songs.</Criterion>
+                <Criterion>Create your own progressions and write music.</Criterion>
+                <Criterion>Explain the theory behind your progressions.</Criterion>
+            </SuccessfulCriteria>
+            <ExerciseType>progression</ExerciseType>
+            <Evaluation>
+                <Type>progression-step</Type>
+                <Description>
+                    Check if pressed keys match the current chord in the progression. Allow custom progressions if specified.
+                </Description>
+            </Evaluation>
+            <Feedback>
+                <Correct>Great chord! or Progression complete!</Correct>
+                <Incorrect>Wrong, play [chordName]</Incorrect>
+            </Feedback>
+        </Stage>
+    </Mode>
+</GameRules>
