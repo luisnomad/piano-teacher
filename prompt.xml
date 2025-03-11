@@ -43,20 +43,21 @@
         <Feature>
             <Name>Piano Component</Name>
             <Description>
-                Use the provided Piano.jsx component, a dumb React component using an SVG for 25 keys (C3-C5). It renders based on props. Piano.jsx and Piano.css are documented and shouldn't be changed unless there is a good reason to, ask first! (they are available in the root folder)
+                Use the provided Piano.jsx component located in the root folder, you can make a copy (i.e.: src/components/Piano.jsx). It renders a 25-key piano using SVG based on props. It relies on notes and notesArray (exported from Piano.jsx) for note data and Piano.css for styling (also available in root folder, make a copy to wherever you need). 
+                The piano renders keys from C3 (MIDI 48) to C5 (MIDI 72), with 15 white keys and 10 black keys. White keys are 40px wide and 150px tall; black keys are 24px wide and 100px tall. Use the piano’s props to highlight keys, show pressed keys, and toggle labels. 
+                The Piano component should not determine the correctness of user input; this logic must be handled by the parent components (i.e.: GuessTheNote.js and ChordMode.js).
             </Description>
             <Props>
                 <Prop name="highlightedKeys">Array of MIDI notes to highlight in yellow (e.g., [notes.C4, notes.E4]).</Prop>
                 <Prop name="pressedKeys">Array of MIDI notes currently pressed.</Prop>
-                <Prop name="showLabels">Boolean to toggle note names (e.g., “C3”, “C#3”).</Prop>
-                <Prop name="onClick">Callback for key press (e.g., onClick(midi)).</Prop>
-                <Prop name="onKeyPress">Callback to determine if a press is correct (returns true/false).</Prop>
+                <Prop name="showLabels">Boolean to toggle note names (e.g., "C3", "C#3").</Prop>
+                <Prop name="onClick">Callback for key press simulation (e.g., onClick(midiNote)). Triggers when a key is clicked or pressed via MIDI, passing the MIDI note number to the parent component.</Prop>
                 <Prop name="positiveMatchColor">Color for correct presses (default: '#4caf50').</Prop>
                 <Prop name="negativeMatchColor">Color for incorrect presses (default: '#f44336').</Prop>
             </Props>
             <Visuals>
                 <Highlight>Yellow for highlighted keys (lesson targets).</Highlight>
-                <Pressed>Green (or positiveMatchColor) for correct presses, red (or negativeMatchColor) for incorrect.</Pressed>
+                <Pressed>Green (or positiveMatchColor) for correct presses, red (or negativeMatchColor) for incorrect, as determined by parent components.</Pressed>
             </Visuals>
         </Feature>
 
@@ -70,8 +71,24 @@
         <Feature>
             <Name>MIDI Integration</Name>
             <Description>
-                Use Web MIDI API to detect note-on events (command 144). Pass pressed note data to parent components for logic and Tone.js playback.
+                Use the Web MIDI API to detect note-on events (command 144) from a MIDI controller, allowing users to play notes using a physical device. The app must handle MIDI errors gracefully for a good user experience, ensuring the game remains playable even without MIDI support. Specifically:
+                - Check for MIDI support using navigator.requestMIDIAccess.
+                - Handle cases where the user denies MIDI access or the browser does not support MIDI.
+                - Provide a fallback input method (clicking on the virtual piano) when MIDI is unavailable.
+                Pass pressed note data to parent components for game logic and Tone.js playback.
             </Description>
+            <Implementation>
+                <Description>
+                    In a utility file (e.g., src/utils/midi.js), write a function to set up the Web MIDI API:
+                    - First, check if navigator.requestMIDIAccess exists. If not, log "MIDI not supported in this browser" to the console and display a user-friendly message in the UI (e.g., "MIDI not supported, please use the virtual piano to play").
+                    - If supported, call navigator.requestMIDIAccess(). Use .then() to handle success and .catch() to handle errors (e.g., user denies access). On error, log "MIDI access denied" and display a UI message (e.g., "MIDI access denied, please use the virtual piano").
+                    - On success, get all MIDI inputs with midiAccess.inputs.values(). Loop through them using a for loop (e.g., let input = inputs.next(); input && !input.done; input = inputs.next()).
+                    - For each input, set input.value.onmidimessage = handleMIDIMessage. In handleMIDIMessage(message), get the MIDI data array: const [command, note, velocity] = message.data.
+                    - If command === 144 (note on) and velocity > 0, add the note (e.g., 60 for C4) to an array of pressed notes. If command === 128 or velocity === 0 (note off), remove that note from the array.
+                    - Export a function that takes a callback (e.g., setPressedKeys) and calls it with the updated pressed notes array whenever a MIDI message happens.
+                    - In App.js, GuessTheNote.js, and ChordMode.js, call this function to update the pressedKeys state for the Piano component. Ensure the Piano component's onClick prop allows clicking the virtual piano as a fallback, so the game remains fully playable without MIDI.
+                </Description>
+            </Implementation>
         </Feature>
 
         <Feature>
