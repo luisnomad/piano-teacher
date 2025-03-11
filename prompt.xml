@@ -1,7 +1,11 @@
 <Prompt>
     <Task>
         <Description>
-            Create a complete React-based web application called "PianoTeacher" using plain JavaScript, designed to teach music theory through two modes: "Guess the Note" and "Chord Mode," with a 25-key virtual piano interface (C3 to C5, MIDI notes 48-72). The app uses MIDI input for interactivity, breaks down music theory into essentials, and encourages learning through visual feedback and audio playback powered by Tone.js. We have a custom SVG-based Piano component (Piano.js) with its CSS (Piano.css) that must be used for rendering the piano. You can request the code for Piano.js and Piano.css separately if needed (they are both included in the root folder). The current date is March 11, 2025—use modern web technologies and React best practices.
+            Create a complete React-based web application called "PianoTeacher" using plain JavaScript, designed to teach music theory through two modes: "Guess the Note" and "Chord Mode," with a 25-key virtual piano interface (C3 to C5, MIDI notes 48-72). 
+            The app uses MIDI input for interactivity, breaks down music theory into essentials, and encourages learning through visual feedback and audio playback powered by Tone.js. 
+            We have a custom SVG-based Piano component (Piano.jsx) with its CSS (Piano.css) that must be used for rendering the piano.
+            Code for Piano.jsx and Piano.css are both included in the root folder. The current date is March 11, 2025—use modern web technologies and React best practices.
+            The app follows detailed game rules defined in a separate gamerules.xml file (available root folder), which specifies the gameplay mechanics, stages, and evaluation criteria for 'Guess the Note' and 'Chord Mode.'
         </Description>
         <Output>
             Provide a fully functional codebase with React components, CSS, and JavaScript files, including clear comments explaining the logic. Include a README with setup instructions (e.g., `npm install`, `npm start`, MIDI setup). Use the provided Piano.jsx component for the piano interface (available in root folder).
@@ -10,7 +14,9 @@
 
     <AppPurpose>
         <Goal>
-            Teach note recognition (Guess the Note mode) and chord construction/progressions (Chord Mode) using a 25-key piano (C3-C5) with MIDI input, visual feedback, and high-quality audio via Tone.js. The piano interface must use the provided Piano.jsx component.
+            Teach note recognition (Guess the Note mode) and chord construction/progressions (Chord Mode) using a 25-key piano (C3-C5) with MIDI input, visual feedback, and high-quality audio via Tone.js. 
+            The piano interface must use the provided Piano.jsx component.
+            Align the codebase with gamerules.xml
         </Goal>
     </AppPurpose>
 
@@ -91,6 +97,22 @@
             <Description>
                 Tracks accuracy per mode; displays after exercises (e.g., “90% correct”).
             </Description>
+        </Feature>
+
+        <Feature>
+            <Name>Exit Mechanism</Name>
+            <Description>
+                Provide a UI element (e.g., a "Exit Mode" button or key press) to allow users to exit the current game mode ("Guess the Note" or "Chord Mode") and return to the main menu or mode selection screen. The button should be clearly labeled and positioned near the piano or feedback area. When clicked, it should reset the current mode's state (e.g., clear pressedKeys, reset target notes or chords) and stop any ongoing audio playback from Tone.js.
+            </Description>
+            <Implementation>
+                <Description>
+                    In the main App.js or mode components (e.g., GuessTheNote.js, ChordMode.js), add a button with an onClick handler. The handler should:
+                    - Stop any active Tone.js synth notes using synth.triggerRelease() or similar.
+                    - Reset relevant state (e.g., set pressedKeys to [], reset targetNote or currentChord).
+                    - Navigate back to a mode selection screen (e.g., via a state change or route if using React Router).
+                    Ensure the button is styled consistently with the app (e.g., using Piano.css or a shared CSS file).
+                </Description>
+            </Implementation>
         </Feature>
     </Features>
 
