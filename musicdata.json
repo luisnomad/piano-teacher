@@ -1,0 +1,149 @@
+{
+  "chords": [
+    {
+      "name": "C Major",
+      "root": "C4",
+      "notes": [
+        { "midi": 60, "name": "C4" },
+        { "midi": 64, "name": "E4" },
+        { "midi": 67, "name": "G4" }
+      ]
+    },
+    {
+      "name": "G Major",
+      "root": "G4",
+      "notes": [
+        { "midi": 67, "name": "G4" },
+        { "midi": 71, "name": "B4" },
+        { "midi": 74, "name": "D5" }
+      ]
+    },
+    {
+      "name": "F Major",
+      "root": "F4",
+      "notes": [
+        { "midi": 65, "name": "F4" },
+        { "midi": 69, "name": "A4" },
+        { "midi": 72, "name": "C5" }
+      ]
+    },
+    {
+      "name": "A Minor",
+      "root": "A4",
+      "notes": [
+        { "midi": 69, "name": "A4" },
+        { "midi": 72, "name": "C5" },
+        { "midi": 76, "name": "E5" }
+      ]
+    },
+    {
+      "name": "D Minor",
+      "root": "D4",
+      "notes": [
+        { "midi": 62, "name": "D4" },
+        { "midi": 65, "name": "F4" },
+        { "midi": 69, "name": "A4" }
+      ]
+    },
+    {
+      "name": "E Minor",
+      "root": "E4",
+      "notes": [
+        { "midi": 64, "name": "E4" },
+        { "midi": 67, "name": "G4" },
+        { "midi": 71, "name": "B4" }
+      ]
+    },
+    {
+      "name": "C Major 7th",
+      "root": "C4",
+      "notes": [
+        { "midi": 60, "name": "C4" },
+        { "midi": 64, "name": "E4" },
+        { "midi": 67, "name": "G4" },
+        { "midi": 71, "name": "B4" }
+      ]
+    },
+    {
+      "name": "G Major 7th",
+      "root": "G4",
+      "notes": [
+        { "midi": 67, "name": "G4" },
+        { "midi": 71, "name": "B4" },
+        { "midi": 74, "name": "D5" },
+        { "midi": 78, "name": "F#5" }
+      ]
+    },
+    {
+      "name": "F Major 7th",
+      "root": "F4",
+      "notes": [
+        { "midi": 65, "name": "F4" },
+        { "midi": 69, "name": "A4" },
+        { "midi": 72, "name": "C5" },
+        { "midi": 76, "name": "E5" }
+      ]
+    },
+    {
+      "name": "C Minor 7th",
+      "root": "C4",
+      "notes": [
+        { "midi": 60, "name": "C4" },
+        { "midi": 63, "name": "Eb4" },
+        { "midi": 67, "name": "G4" },
+        { "midi": 70, "name": "Bb4" }
+      ]
+    },
+    {
+      "name": "G Dominant 7th",
+      "root": "G4",
+      "notes": [
+        { "midi": 67, "name": "G4" },
+        { "midi": 71, "name": "B4" },
+        { "midi": 74, "name": "D5" },
+        { "midi": 70, "name": "F5" }
+      ]
+    },
+    {
+      "name": "C Augmented",
+      "root": "C4",
+      "notes": [
+        { "midi": 60, "name": "C4" },
+        { "midi": 64, "name": "E4" },
+        { "midi": 68, "name": "G#4" }
+      ]
+    }
+  ],
+  "progressions": [
+    {
+      "name": "I-IV-V-I (C Major)",
+      "key": "C Major",
+      "chordRefs": ["C Major", "F Major", "G Major", "C Major"]
+    },
+    {
+      "name": "I-vi-ii-V (C Major)",
+      "key": "C Major",
+      "chordRefs": ["C Major", "A Minor", "D Minor", "G Major"]
+    },
+    {
+      "name": "I-vi-IV-V (C Major)",
+      "key": "C Major",
+      "chordRefs": ["C Major", "A Minor", "F Major", "G Major"]
+    },
+    {
+      "name": "ii-V-I (C Major)",
+      "key": "C Major",
+      "chordRefs": ["D Minor", "G Major", "C Major"]
+    },
+    {
+      "name": "I-IV-V-I (G Major)",
+      "key": "G Major",
+      "chordRefs": ["G Major", "C Major", "D Major", "G Major"]
+    },
+    {
+      "name": "Twinkle Twinkle (C Major)",
+      "key": "C Major",
+      "chordRefs": ["C Major", "G Major", "C Major", "G Major", "C Major", "G Major", "C Major"]
+    }
+  ]
+}
