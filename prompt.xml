@@ -6,6 +6,8 @@
             We have a custom SVG-based Piano component (Piano.jsx) with its CSS (Piano.css) that must be used for rendering the piano.
             Code for Piano.jsx and Piano.css are both included in the root folder. The current date is March 11, 2025—use modern web technologies and React best practices.
             The app follows detailed game rules defined in a separate gamerules.xml file (available root folder), which specifies the gameplay mechanics, stages, and evaluation criteria for 'Guess the Note' and 'Chord Mode.'
+            The app uses detailed music data defined in a separate MusicData.xml file, which provides specific chords and progressions for exercises, alongside the gameplay rules in gamerules.xml (both xml files are in the root folder)
+            Align the codebase with the gameplay rules in gamerules.xml and the music data in MusicData.xml
         </Description>
         <Output>
             Provide a fully functional codebase with React components, CSS, and JavaScript files, including clear comments explaining the logic. Include a README with setup instructions (e.g., `npm install`, `npm start`, MIDI setup). Use the provided Piano.jsx component for the piano interface (available in root folder).
