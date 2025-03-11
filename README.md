@@ -26,7 +26,7 @@ All files are located in the root directory of this repository. After setting up
     *   `MusicData.json`: A JSON version of `MusicData.xml` for direct JavaScript use, offering the same data with flexibility.
     *   `rootprompt.xml`: Guides the AI through a structured process: understand requirements, plan, ask questions, then implement. Points to all resources and ensures clarity before coding.
 *   **Example Files:**
-    *   `Piano.js`: A React component rendering a 25-key piano with SVG, exporting `notes` and `notesArray` for note lookups. Uses `onClick(midiNote)` for key presses, with correctness handled by parent components.
+    *   `Piano.jsx`: A React component rendering a 25-key piano with SVG, exporting `notes` and `notesArray` for note lookups. Uses `onClick(midiNote)` for key presses, with correctness handled by parent components.
     *   `Piano.css`: CSS styling for the piano, ensuring responsiveness and clean visuals.
     *   `gameEngine.js`: An example implementation of the game logic, structuring exercises and evaluations for each mode and stage.
 
