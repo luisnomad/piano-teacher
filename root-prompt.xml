@@ -52,6 +52,8 @@
                 - How to use the provided Piano.jsx component and MusicData.json for exercises.
                 - Error handling (e.g., MIDI support, user denial).
                 - File management: After setting up Vite (which creates an src/ folder), copy Piano.jsx and Piano.css from the root folder to src/components/, keeping the original files in the root intact. Use the copied files in src/components/ for the app implementation.
+                - After setting up the project with Vite (i.e.: npm init vite@latest pianoteacher -- --template react), change to that new directory and don't change back, "pianoTeacher" will be the new root folder for the app. 
+                - If you need to use anything from the parent folder, you will do so by using the relative path, never by changing the directory back to the parent folder as this will cause issues with follow up commands.
                 Write this plan as a comment or separate document in your response before proceeding to implementation. Ensure the plan aligns with the requirements in mainprompt.xml, gamerules.xml, and MusicData.xml/json.
             </Instructions>
         </Step>
