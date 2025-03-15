@@ -112,6 +112,9 @@
         <Requirement>
             Ask questions if anything is unclear before implementing. Do not guess or assume.
         </Requirement>
+        <Requirement>
+            If you have furhter questions, search for possible answers in the clarifications.xml file.
+        </Requirement>
     </Requirements>
 
     <LessonsLearned>
