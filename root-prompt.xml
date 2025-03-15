@@ -53,7 +53,7 @@
                 - Error handling (e.g., MIDI support, user denial).
                 - File management: After setting up Vite (which creates an src/ folder), copy Piano.jsx and Piano.css from the root folder to src/components/, keeping the original files in the root intact. Use the copied files in src/components/ for the app implementation.
                 - After setting up the project with Vite (i.e.: npm init vite@latest pianoteacher -- --template react), change to that new directory and don't change back, "pianoTeacher" will be the new root folder for the app. 
-                - To ensure we don't make a mess with folder patgs, create ENV variables for the paths to the parent folder and the root folder of the app. Before initiating the project, make sure to set these variables: $ROOT_FOLDER (where we are before creating the Vite app) and $APP_FOLDER (the folder created with Vite). Always use these variables when referring to folders.
+                - To ensure we don't make a mess with folder paths, create ENV variables for the paths to the parent folder and the root folder of the app. Before initiating the project, make sure to set these variables: $ROOT_FOLDER (where we are before creating the Vite app) and $APP_FOLDER (the folder created with Vite). Always use these variables when referring to folders.
                 - Write this plan as a comment or separate document in your response before proceeding to implementation. Ensure the plan aligns with the all requirements in mainprompt.xml, gamerules.xml, and MusicData.xml/json. Compare your plan with the provided prompts to ensure you have a clear path forward and 100% alignment with the requirements.
             </Instructions>
         </Step>
