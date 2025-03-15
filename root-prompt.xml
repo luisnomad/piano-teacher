@@ -27,8 +27,16 @@
                 - Examine MusicData.xml and MusicData.json to see the specific chords (e.g., C Major: C4-E4-G4, MIDI 60-64-67) and progressions (e.g., I-IV-V-I) available for exercises.
                 - Inspect Piano.jsx to understand the Piano component’s props (e.g., onClick(midiNote), highlightedKeys) and exports (notes, notesArray).
                 - Review Piano.css to see the styling for the piano.
-                - Study gameEngine.js as an example of how the game logic can be structured, including stage exercises and evaluation.
-                Take notes on key requirements, such as using Vite, handling MIDI errors, integrating Tone.js, and ensuring the Piano component does not handle correctness logic (handled by GuessTheNote.js and ChordMode.js).
+                - Take notes on key requirements, such as using Vite, handling MIDI errors, integrating Tone.js, and ensuring the Piano component does not handle correctness logic (handled by GuessTheNote.js and ChordMode.js).
+            </Instructions>
+        </Step>
+        <Step>
+            <Name>Be aware of the folder structure at all times</Name>
+            <Instructions>
+                - The project is structured in a way that you should be aware of the folder structure at all times. 
+                - The main files are in the root folder, but after setting up Vite, you will have to consider that a new folder will be created, becoming the root folder for the app. 
+                - Make sure to copy the Piano.jsx and Piano.css files to the correct location after the Vite setup.
+                - When running command line commands, make sure you are in the correct directory. If unsure, ask for clarification before proceeding.
             </Instructions>
         </Step>
         <Step>
@@ -70,6 +78,7 @@
                 - Follow the example in gameEngine.js to structure the game logic, adapting it as needed.
                 - Ensure MIDI error handling (unsupported browsers, user denial) with a fallback to clicking the virtual piano.
                 - Add UI elements for mode selection, stage/attempt indicators, and an exit button as specified.
+                - Try to generate a nice, slick interface.
                 - Test the app thoroughly:
                     - Verify "Guess the Note" mode runs indefinitely with random notes.
                     - Check "Chord Mode" progresses after 5 correct attempts per stage, with a visual indicator.

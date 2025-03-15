@@ -12,7 +12,15 @@
 
     <Mode name="GuessTheNote">
         <Description>
-            A practice mode where users identify random notes from C3 to C5 (MIDI 48-72). The app plays a note using Tone.js, highlights it in yellow on the piano, and the user must play it back via MIDI or clicking. Correct guesses turn the key green (positiveMatchColor), incorrect ones turn it red (negativeMatchColor). Feedback (e.g., "Correct!" or "Try again") appears below the piano. This mode runs indefinitely until the user exits.
+            - A practice mode where users identify random notes from C3 to C5 (MIDI 48-72). 
+            - The app plays a note using Tone.js, highlights it in yellow on the piano, and the user must play it back via MIDI or clicking. 
+            - Correct guesses turn the key green (positiveMatchColor), incorrect ones turn it red (negativeMatchColor). 
+            - Feedback (e.g., "Correct!" or "Try again") appears below the piano. 
+            - This mode runs indefinitely until the user exits.
+            - When user press an incorrect note, we should still hear the note played by the app, so the user can compare it with the note they played.
+            - After each attempt, the app should play the target note again.
+            - The app should not play the target note if the user has already played the correct note.
+            - There will be a "Visual Indicator" toggle to show/hide the target note on the piano. When enabled, the target note will be highlighted in yellow.
         </Description>
         <ExerciseType>note</ExerciseType>
         <Evaluation>
