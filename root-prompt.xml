@@ -74,8 +74,9 @@
                 Once all questions are resolved and you have a clear plan, implement the PianoTeacher app. Follow these guidelines:
                 - Set up the project using Vite as specified in mainprompt.xml’s Setup section.
                 - After Vite setup, copy Piano.jsx and Piano.css from the root folder to src/components/, keeping the original files in the root intact. Use the copied files for implementation.
-                - Create the necessary files (e.g., App.js, GuessTheNote.js, ChordMode.js, src/utils/midi.js, src/utils/audio.js, src/utils/theory.js).
-                - Use the provided Piano.jsx component (from src/components/) for the piano interface, calling onClick(midiNote) to handle key presses.
+                - Right after seeting the project, the FIRST thing we will do is export ROOT_FOLDER='$PWD' && export APP_FOLDER='$PWD/pianoteacher'
+                - Create the necessary files (e.g., $APP_FOLDER/App.jsx, $APP_FOLDER/GuessTheNote.jsx, $APP_FOLDER/ChordMode.jsx, $APP_FOLDER/src/utils/midi.js, $APP_FOLDER/src/utils/audio.js, $APP_FOLDER/src/utils/theory.js).
+                - Use the provided $ROOT_FOLDER/Piano.jsx component for the piano interface, calling onClick(midiNote) to handle key presses.
                 - Implement game logic as per gamerules.xml, using MusicData.json (or MusicData.xml if preferred) for chords and progressions.
                 - Follow the example in gameEngine.js to structure the game logic, adapting it as needed.
                 - Ensure MIDI error handling (unsupported browsers, user denial) with a fallback to clicking the virtual piano.
@@ -86,7 +87,8 @@
                     - Check "Chord Mode" progresses after 5 correct attempts per stage, with a visual indicator.
                     - Confirm MIDI works (if available) and falls back to clicks.
                     - Ensure chords and progressions from MusicData.json are used correctly (e.g., C Major highlights MIDI 60-64-67).
-                Deliver a fully functional codebase with comments explaining the logic. Include a README.md with setup instructions (e.g., `npm install`, `npm run dev`, MIDI setup).
+                - Deliver a fully functional codebase with comments explaining the logic. Include a README.md with setup instructions (e.g., `npm install`, `npm run dev`, MIDI setup).
+                - Critically important requirement: ALWAYS use the ENV variables $ROOT_FOLDER and $APP_FOLDER when referring to folders.
             </Instructions>
         </Step>
     </Process>
