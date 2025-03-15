@@ -88,7 +88,7 @@
                     - Confirm MIDI works (if available) and falls back to clicks.
                     - Ensure chords and progressions from MusicData.json are used correctly (e.g., C Major highlights MIDI 60-64-67).
                 - Deliver a fully functional codebase with comments explaining the logic. Include a README.md with setup instructions (e.g., `npm install`, `npm run dev`, MIDI setup).
-                - Critically important requirement: ALWAYS use the ENV variables $ROOT_FOLDER and $APP_FOLDER when referring to folders.
+                - Critically important requirement: ALWAYS use the ENV variables $ROOT_FOLDER and $APP_FOLDER when referring to folders. The ENV variables are to be used in the terminal, for commands. So don't add them anywhere else like in an .env file, where they won't be accessible.
             </Instructions>
         </Step>
     </Process>
